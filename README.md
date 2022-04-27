@@ -4,7 +4,7 @@
 
 ## Course Description
 
-In the [Spring Fundamentals](https://softuni.bg/trainings/3010/java-oop-october-2020) course the participants will be introduced to the basic principles of web development such as **HTTP protocol**, **sessions** and ways to save the current **state**. The course points to provide basic knowledge and skills to work with the **Spring framework**, its components and architecture, defining models, views and partial views with **Thymeleaf** view engine, defining **controllers**, various data transfer protocols. Techniques for creating an **MVC web application** with support for all basic functionality are studied: **data visualization**, **tables**, **CRUD operations on data**, **validation** and others.
+In the [Spring Fundamentals](https://softuni.bg/trainings/3493/spring-fundamentals-september-2021) course the participants will be introduced to the basic principles of web development such as **HTTP protocol**, **sessions** and ways to save the current **state**. The course points to provide basic knowledge and skills to work with the **Spring framework**, its components and architecture, defining models, views and partial views with **Thymeleaf** view engine, defining **controllers**, various data transfer protocols. Techniques for creating an **MVC web application** with support for all basic functionality are studied: **data visualization**, **tables**, **CRUD operations on data**, **validation** and others.
 
 ## Acquired skills
 
