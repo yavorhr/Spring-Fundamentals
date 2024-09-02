@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: YavorHr
+Build-Jdk: version 22.0.2
+
