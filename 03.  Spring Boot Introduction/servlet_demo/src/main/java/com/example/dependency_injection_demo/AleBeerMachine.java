@@ -1,4 +1,4 @@
-package com.example.ioc_demo;
+package com.example.dependency_injection_demo;
 
 public class AleBeerMachine implements BeerMachineIfc {
 
