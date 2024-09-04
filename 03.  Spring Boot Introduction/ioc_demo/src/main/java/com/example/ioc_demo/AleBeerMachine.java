@@ -2,7 +2,6 @@ package com.example.ioc_demo;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class AleBeerMachine implements BeerMachineIfc {
 
   public AleBeerMachine() {
