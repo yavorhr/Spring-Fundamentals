@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("lagerBeerMachine")
 public class LagerBeerMachine implements BeerMachineIfc {
 
   public LagerBeerMachine() {
