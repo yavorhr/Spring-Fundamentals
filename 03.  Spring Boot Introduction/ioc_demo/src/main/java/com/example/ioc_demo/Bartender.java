@@ -8,7 +8,7 @@ public class Bartender {
   private final BeerMachineIfc beerMachine;
 
   // Default constructor
-  public Bartender(@Qualifier("aleBeerMachine") BeerMachineIfc beerMachine) {
+  public Bartender(@Qualifier("aleBeerMachineCustomName") BeerMachineIfc beerMachine) {
     this.beerMachine = beerMachine;
   }
 
