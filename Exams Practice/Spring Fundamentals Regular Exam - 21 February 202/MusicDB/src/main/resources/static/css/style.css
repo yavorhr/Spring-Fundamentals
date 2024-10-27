@@ -22,7 +22,7 @@ footer {
     width: 100%;
 }
 body {
-    background-image: url(/static/img/background.jpg);
+    background-image: url(/img/background.jpg);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
