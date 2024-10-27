@@ -7,10 +7,15 @@ import jakarta.persistence.Enumerated;
 
 @Entity
 public class Artist extends BaseEntity {
-  private String careerInformation;
   private ArtistsNameEnum name;
+  private String careerInformation;
 
   public Artist() {
+  }
+
+  public Artist(ArtistsNameEnum name, String careerInformation) {
+    this.name = name;
+    this.careerInformation = careerInformation;
   }
 
   @Column(columnDefinition = "LONGTEXT")
