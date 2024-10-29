@@ -1,11 +1,12 @@
 package com.example.musicdb.web;
 
 import com.example.musicdb.model.dto.binding.UserRegisterBindingModel;
-import com.example.musicdb.model.dto.service.userRegisterServiceModel;
+import com.example.musicdb.model.dto.service.UserRegisterServiceModel;
 import com.example.musicdb.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,9 +29,19 @@ public class UserRegisterController {
   }
 
   @GetMapping("/users/register")
-  public String getRegisterPage() {
+  public String getRegisterPage(Model model) {
+
+    extracted(model, "usernameAlreadyOccupied");
+    extracted(model, "emailAlreadyOccupied");
+    extracted(model, "passwordsDoesNotMatch");
 
     return "register";
+  }
+
+  private void extracted(Model model, String attribute) {
+    if (!model.containsAttribute(attribute)) {
+      model.addAttribute(attribute, false);
+    }
   }
 
   @PostMapping("/users/register")
@@ -39,12 +50,21 @@ public class UserRegisterController {
           BindingResult bindingResult,
           RedirectAttributes redirectAttributes) {
 
+    boolean doPasswordsMatch =
+            userRegisterBindingModel
+                    .getPassword()
+                    .equals(userRegisterBindingModel.getConfirmPassword());
+
     if (bindingResult.hasErrors() ||
-            !userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
+            !doPasswordsMatch) {
 
       redirectAttributes
               .addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel)
               .addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);
+
+      if (!doPasswordsMatch) {
+        redirectAttributes.addFlashAttribute("passwordsDoesNotMatch", true);
+      }
 
       return "redirect:register";
     }
@@ -53,6 +73,7 @@ public class UserRegisterController {
     boolean isEmailAvailable = this.userService.isEmailAvailable(userRegisterBindingModel.getEmail());
 
     if (!isEmailAvailable) {
+
       redirectAttributes
               .addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel)
               .addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult)
@@ -70,7 +91,7 @@ public class UserRegisterController {
       return "redirect:register";
     }
 
-    this.userService.registerUser(this.modelMapper.map(userRegisterBindingModel, userRegisterServiceModel.class ));
+    this.userService.registerAndLoginUser(this.modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class));
 
     return "redirect:login";
   }
