@@ -13,4 +13,9 @@ public class ApplicationContext {
   public ModelMapper modelMapper(){
     return new ModelMapper();
   }
+
+  @Bean
+  public PasswordEncoder passwordEncoder(){
+    return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+  }
 }
