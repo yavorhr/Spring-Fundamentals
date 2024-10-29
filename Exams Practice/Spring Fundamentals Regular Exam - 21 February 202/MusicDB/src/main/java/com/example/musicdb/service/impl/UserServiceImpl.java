@@ -1,9 +1,12 @@
 package com.example.musicdb.service.impl;
 
-import com.example.musicdb.model.dto.service.userRegisterServiceModel;
+import com.example.musicdb.model.dto.service.UserRegisterServiceModel;
 import com.example.musicdb.model.entity.User;
 import com.example.musicdb.repository.UserRepository;
 import com.example.musicdb.service.UserService;
+import com.example.musicdb.util.CurrentUser;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,9 +14,15 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
+  private final ModelMapper modelMapper;
+  private final PasswordEncoder passwordEncoder;
+  private final CurrentUser currentUser;
 
-  public UserServiceImpl(UserRepository userRepository) {
+  public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, CurrentUser currentUser) {
     this.userRepository = userRepository;
+    this.modelMapper = modelMapper;
+    this.passwordEncoder = passwordEncoder;
+    this.currentUser = currentUser;
   }
 
   @Override
@@ -37,9 +46,12 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void registerUser(userRegisterServiceModel serviceModel) {
+  public void registerAndLoginUser(UserRegisterServiceModel serviceModel) {
 
+    User entity = this.modelMapper.map(serviceModel, User.class);
+    entity.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
+
+    entity = this.userRepository.save(entity);
+    this.currentUser.login(entity);
   }
-
-
 }

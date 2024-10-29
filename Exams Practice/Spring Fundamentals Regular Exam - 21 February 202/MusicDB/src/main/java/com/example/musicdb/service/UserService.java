@@ -1,7 +1,7 @@
 package com.example.musicdb.service;
 
 import com.example.musicdb.model.entity.User;
-import com.example.musicdb.model.dto.service.userRegisterServiceModel;
+import com.example.musicdb.model.dto.service.UserRegisterServiceModel;
 
 import java.util.Optional;
 
@@ -15,5 +15,5 @@ public interface UserService {
 
   boolean isEmailAvailable(String email);
 
-  void registerUser(userRegisterServiceModel serviceModel);
+  void registerAndLoginUser(UserRegisterServiceModel serviceModel);
 }
