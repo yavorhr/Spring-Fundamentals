@@ -30,7 +30,6 @@ public class UserRegisterController {
 
   @GetMapping("/users/register")
   public String getRegisterPage(Model model) {
-
     extracted(model, "usernameAlreadyOccupied");
     extracted(model, "emailAlreadyOccupied");
     extracted(model, "passwordsDoesNotMatch");
