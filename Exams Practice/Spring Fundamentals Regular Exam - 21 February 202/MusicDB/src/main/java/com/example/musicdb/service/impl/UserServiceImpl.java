@@ -6,6 +6,7 @@ import com.example.musicdb.model.entity.User;
 import com.example.musicdb.repository.UserRepository;
 import com.example.musicdb.service.UserService;
 import com.example.musicdb.util.CurrentUser;
+import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,10 @@ public class UserServiceImpl implements UserService {
                     .findByUsername(serviceModel.getUsername()).get();
 
     this.currentUser.login(userEntity);
+  }
+
+  @Override
+  public void logout() {
+   this.currentUser.clear();
   }
 }
