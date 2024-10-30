@@ -73,7 +73,8 @@ public class CurrentUser {
     this
             .setUsername("")
             .setEmail("")
-            .setFullName("");
+            .setFullName("")
+            .setId(null);
   }
 
   public boolean isLoggedIn() {
