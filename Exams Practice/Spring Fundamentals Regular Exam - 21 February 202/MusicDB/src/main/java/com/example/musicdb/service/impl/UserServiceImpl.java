@@ -1,5 +1,6 @@
 package com.example.musicdb.service.impl;
 
+import com.example.musicdb.model.dto.service.UserLoginServiceModel;
 import com.example.musicdb.model.dto.service.UserRegisterServiceModel;
 import com.example.musicdb.model.entity.User;
 import com.example.musicdb.repository.UserRepository;
@@ -47,11 +48,29 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void registerAndLoginUser(UserRegisterServiceModel serviceModel) {
-
     User entity = this.modelMapper.map(serviceModel, User.class);
     entity.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
 
     entity = this.userRepository.save(entity);
     this.currentUser.login(entity);
+  }
+
+  @Override
+  public boolean findByUsernameAndPassword(String username, String password) {
+    Optional<User> user = this.userRepository.findByUsername(username);
+
+    if (user.isEmpty()) {
+      return false;
+    }
+    return this.passwordEncoder.matches(password, user.get().getPassword() );
+  }
+
+  @Override
+  public void loginUser(UserLoginServiceModel serviceModel) {
+    User userEntity =
+            this.userRepository
+                    .findByUsername(serviceModel.getUsername()).get();
+
+    this.currentUser.login(userEntity);
   }
 }
