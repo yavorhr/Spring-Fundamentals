@@ -65,7 +65,8 @@ public class CurrentUser {
     this
             .setUsername(userEntity.getUsername())
             .setEmail(userEntity.getEmail())
-            .setFullName(userEntity.getFullName());
+            .setFullName(userEntity.getFullName())
+            .setId(userEntity.getId());
   }
 
   public void clear() {
