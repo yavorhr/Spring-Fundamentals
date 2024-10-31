@@ -1,6 +1,7 @@
 package com.example.musicdb.service.impl;
 
 import com.example.musicdb.model.dto.service.AddAlbumServiceModel;
+import com.example.musicdb.model.dto.view.AlbumViewModel;
 import com.example.musicdb.model.entity.Album;
 import com.example.musicdb.model.entity.Artist;
 import com.example.musicdb.model.entity.ArtistsNameEnum;
@@ -12,6 +13,9 @@ import com.example.musicdb.service.UserService;
 import com.example.musicdb.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
@@ -45,5 +49,26 @@ public class AlbumServiceImpl implements AlbumService {
     album.setArtist(artist);
 
     this.albumRepository.save(album);
+  }
+
+  @Override
+  public Collection<AlbumViewModel> findAllAlbums() {
+    return this.albumRepository.findAll().stream()
+            .map(a -> {
+              AlbumViewModel viewModel = this.modelMapper.map(a, AlbumViewModel.class);
+              viewModel.setArtist(a.getArtist().getName());
+              return viewModel;
+            })
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public void deleteAlbum(Long id) {
+    this.albumRepository.deleteById(id);
+  }
+
+  @Override
+  public Integer getTotalCopies() {
+    return this.albumRepository.findAll().stream().mapToInt(Album::getCopies).sum();
   }
 }
