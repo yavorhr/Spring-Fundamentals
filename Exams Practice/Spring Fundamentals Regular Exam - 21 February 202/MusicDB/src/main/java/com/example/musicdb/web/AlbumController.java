@@ -3,6 +3,7 @@ package com.example.musicdb.web;
 import com.example.musicdb.model.dto.binding.AddAlbumBindingModel;
 import com.example.musicdb.model.dto.service.AddAlbumServiceModel;
 import com.example.musicdb.service.AlbumService;
+import com.example.musicdb.util.CurrentUser;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AlbumController {
   private final ModelMapper mapper;
   private final AlbumService albumService;
+  private final CurrentUser currentUser;
 
-  public AlbumController(ModelMapper mapper, AlbumService albumService) {
+  public AlbumController(ModelMapper mapper, AlbumService albumService, CurrentUser currentUser) {
     this.mapper = mapper;
     this.albumService = albumService;
+    this.currentUser = currentUser;
   }
 
   @ModelAttribute("addAlbumBindingModel")
-  public AddAlbumBindingModel addAlbumBindingModel(){
+  public AddAlbumBindingModel addAlbumBindingModel() {
     return new AddAlbumBindingModel();
   }
 
@@ -41,6 +44,10 @@ public class AlbumController {
   public String addAlbum(@Valid AddAlbumBindingModel addAlbumBindingModel,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
+
+    if (!currentUser.isLoggedIn()) {
+      return "redirect:/users/login";
+    }
 
     if (bindingResult.hasErrors()) {
       redirectAttributes
