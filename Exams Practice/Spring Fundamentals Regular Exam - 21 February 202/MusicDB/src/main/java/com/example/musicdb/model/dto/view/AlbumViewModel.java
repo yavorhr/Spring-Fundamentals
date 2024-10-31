@@ -13,8 +13,18 @@ public class AlbumViewModel {
   private GenreEnum genre;
   private BigDecimal price;
   private LocalDate releaseDate;
+  private Long userId;
+  private Integer copies;
 
   public AlbumViewModel() {
+  }
+
+  public Integer getCopies() {
+    return copies;
+  }
+
+  public Long getUserId() {
+    return userId;
   }
 
   public Long getId() {
@@ -68,6 +78,16 @@ public class AlbumViewModel {
 
   public AlbumViewModel setReleaseDate(LocalDate releaseDate) {
     this.releaseDate = releaseDate;
+    return this;
+  }
+
+  public AlbumViewModel setUserId(Long userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  public AlbumViewModel setCopies(Integer copies) {
+    this.copies = copies;
     return this;
   }
 }
