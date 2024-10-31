@@ -11,6 +11,11 @@
 </header>
 <main class="p-5 bg-blur text-center my-main">
     <h1 class="text-light border-bottom">Add Album</h1>
+    <div th:if="${albumExists}">
+        <h3 class="form-text bg-danger rounded text-white" >
+            Album already exists!
+        </h3>
+    </div>
     <div class="d-flex justify-content-center">
         <form
                 th:action="@{/albums/add}"
@@ -18,10 +23,6 @@
                 th:object="${addAlbumBindingModel}"
                 class="text-light">
             <div>
-                <small th:if="${albumExists}"
-                       class="form-text bg-danger rounded">
-                    Album already exist
-                </small>
             </div>
             <div class="form-row m-5">
                 <div class="col">

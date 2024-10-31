@@ -30,7 +30,7 @@ public class AlbumController {
 
   @GetMapping("/albums/add")
   public String getAddAlbumPage(Model model) {
-    if (model.containsAttribute("albumExists")) {
+    if (!model.containsAttribute("albumExists")) {
       model.addAttribute("albumExists", false);
     }
 

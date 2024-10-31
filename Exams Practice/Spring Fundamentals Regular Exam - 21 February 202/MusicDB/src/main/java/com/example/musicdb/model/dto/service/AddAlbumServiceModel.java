@@ -23,7 +23,7 @@ public class AddAlbumServiceModel {
 
   public AddAlbumServiceModel() {
   }
-  
+
   public String getName() {
     return name;
   }
