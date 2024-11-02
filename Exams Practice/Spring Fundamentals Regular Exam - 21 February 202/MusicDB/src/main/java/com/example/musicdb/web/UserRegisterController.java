@@ -11,9 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/users")
 public class UserRegisterController {
   private final UserService userService;
   private final ModelMapper modelMapper;
@@ -28,7 +30,7 @@ public class UserRegisterController {
     return new UserRegisterBindingModel();
   }
 
-  @GetMapping("/users/register")
+  @GetMapping("/register")
   public String getRegisterPage(Model model) {
     extracted(model, "usernameAlreadyOccupied");
     extracted(model, "emailAlreadyOccupied");
@@ -43,7 +45,7 @@ public class UserRegisterController {
     }
   }
 
-  @PostMapping("/users/register")
+  @PostMapping("/register")
   public String registerUser(
           @Valid UserRegisterBindingModel userRegisterBindingModel,
           BindingResult bindingResult,

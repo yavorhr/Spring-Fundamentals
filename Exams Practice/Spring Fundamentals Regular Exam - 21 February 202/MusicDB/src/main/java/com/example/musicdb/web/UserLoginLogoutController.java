@@ -11,9 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/users")
 public class UserLoginLogoutController {
   private final UserService userService;
   private final ModelMapper mapper;
@@ -28,7 +30,7 @@ public class UserLoginLogoutController {
     return new UserLoginBindingModel();
   }
 
-  @GetMapping("/users/login")
+  @GetMapping("/login")
   public String getLoginPage(Model model) {
     if (!model.containsAttribute("userNotExists")) {
       model.addAttribute("userNotExists", false);
@@ -36,7 +38,7 @@ public class UserLoginLogoutController {
     return "login";
   }
 
-  @PostMapping("/users/login")
+  @PostMapping("/login")
   public String loginUser(@Valid UserLoginBindingModel userLoginBindingModel,
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
@@ -68,7 +70,7 @@ public class UserLoginLogoutController {
     return "redirect:/home";
   }
 
-  @GetMapping("/users/logout")
+  @GetMapping("/logout")
   public String logout() {
 
     userService.logout();
