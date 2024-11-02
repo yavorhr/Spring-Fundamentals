@@ -49,7 +49,7 @@ public class CurrentUser {
     this.id = id;
     return this;
   }
-  
+
   public boolean isLoggedIn() {
     return this.id != null;
   }
