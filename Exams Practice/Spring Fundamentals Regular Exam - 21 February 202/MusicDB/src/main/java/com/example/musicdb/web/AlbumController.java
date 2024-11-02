@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/albums")
 public class AlbumController {
   private final ModelMapper mapper;
   private final AlbumService albumService;
@@ -29,7 +30,7 @@ public class AlbumController {
     return new AddAlbumBindingModel();
   }
 
-  @GetMapping("/albums/add")
+  @GetMapping("/add")
   public String getAddAlbumPage(Model model) {
     if (!model.containsAttribute("albumExists")) {
       model.addAttribute("albumExists", false);
@@ -38,7 +39,7 @@ public class AlbumController {
     return "add-album";
   }
 
-  @PostMapping("/albums/add")
+  @PostMapping("/add")
   public String addAlbum(@Valid AddAlbumBindingModel addAlbumBindingModel,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
@@ -74,7 +75,7 @@ public class AlbumController {
     return "redirect:/home";
   }
 
-  @DeleteMapping("/albums/{id}")
+  @DeleteMapping("/{id}")
   public String deleteAlbum(@PathVariable Long id) {
     this.albumService.deleteAlbum(id);
 
