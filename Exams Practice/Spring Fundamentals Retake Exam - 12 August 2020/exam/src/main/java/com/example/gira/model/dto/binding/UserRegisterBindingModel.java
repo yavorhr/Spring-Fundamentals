@@ -1,5 +1,6 @@
 package com.example.gira.model.dto.binding;
 
+import com.example.gira.validation.UniqueEmail;
 import com.example.gira.validation.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +29,7 @@ public class UserRegisterBindingModel {
 
   @Email
   @NotNull
+  @UniqueEmail
   public String getEmail() {
     return email;
   }
