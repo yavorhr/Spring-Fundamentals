@@ -1,5 +1,6 @@
 package com.example.gira.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -13,14 +14,17 @@ public class UserEntity extends BaseEntity {
   public UserEntity() {
   }
 
+  @Column(unique = true, nullable = false)
   public String getUsername() {
     return username;
   }
 
+  @Column(nullable = false)
   public String getPassword() {
     return password;
   }
 
+  @Column(unique = true, nullable = false)
   public String getEmail() {
     return email;
   }
