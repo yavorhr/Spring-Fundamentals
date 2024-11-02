@@ -11,7 +11,7 @@ public class DBInit implements CommandLineRunner {
   public DBInit(ClassificationService classificationService) {
     this.classificationService = classificationService;
   }
-  
+
   @Override
   public void run(String... args) throws Exception {
     this.classificationService.initObjects();
