@@ -1,8 +1,8 @@
 package com.example.gira.model.dto.binding;
 
-import com.example.gira.validation.PasswordsMatchOnRegister;
-import com.example.gira.validation.UniqueEmail;
-import com.example.gira.validation.UniqueUsername;
+import com.example.gira.validation.register.PasswordsMatchOnRegister;
+import com.example.gira.validation.register.UniqueEmail;
+import com.example.gira.validation.register.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
