@@ -14,7 +14,11 @@
     <main class="content-wrap">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Task</span></h1>
         <hr class="hr-3 w-25 bg-white"/>
-        <form class="mx-auto w-25 bg-blur" method="" action="/">
+        <form
+                class="mx-auto w-25 bg-blur"
+                th:method="POST"
+                th:action="@{/tasks/add}"
+                th:object="${addTaskBindingModel}">
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="name" class="h4 mb-2">Name</label>
@@ -43,12 +47,11 @@
                 </div>
                 <select type="text" class="form-control" id="classification" name="classification">
                     <option value="">Select Classification</option>
-                    <option value="">FEATURE</option>
-                    <option value="">BUG</option>
-                    <option value="">SUPPORT</option>
-                    <option value="">OTHER</option>
-
-
+                    <option th:each="classification : ${classifications}"
+                            th:value="${classification}"
+                            th:text="${classification}"
+                            th:selected="${classification} == *{classificationEnum}">FEATURE
+                    </option>
                 </select>
                 <small class="text-danger">Classification error message</small>
             </div>
