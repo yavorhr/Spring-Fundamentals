@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = EmailAndPasswordValidator.class)
 public @interface DoesUserExist {
-  String message() default "Invalid email and password combination";
+  String message() default "Incorrect email or password!";
 
   Class<?>[] groups() default { };
 
