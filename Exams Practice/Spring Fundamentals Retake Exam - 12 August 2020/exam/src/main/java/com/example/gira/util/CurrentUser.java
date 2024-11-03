@@ -61,4 +61,12 @@ public class CurrentUser {
             .setId(userEntity.getId())
             .setUsername(getUsername());
   }
+
+  public void logout() {
+    this
+            .setEmail("")
+            .setId(null)
+            .setUsername("");
+
+  }
 }
