@@ -1,5 +1,6 @@
 package com.example.gira.service;
 
+import com.example.gira.model.dto.service.UserLoginServiceModel;
 import com.example.gira.model.dto.service.UserRegisterServiceModel;
 
 public interface UserService {
@@ -8,4 +9,8 @@ public interface UserService {
   boolean isEmailAvailable(String email);
 
   void registerUser(UserRegisterServiceModel serviceModel);
+
+  boolean doesUserExist(UserLoginServiceModel map);
+
+  void loginUser(UserLoginServiceModel map);
 }
