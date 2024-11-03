@@ -6,6 +6,7 @@ import com.example.gira.model.entity.UserEntity;
 import com.example.gira.repository.UserRepository;
 import com.example.gira.service.UserService;
 import com.example.gira.util.CurrentUser;
+import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +51,10 @@ public class UserServiceImpl implements UserService {
                     .get();
 
     this.currentUser.saveSession(userEntity);
+  }
+
+  @Override
+  public void logout() {
+    this.currentUser.logout();
   }
 }

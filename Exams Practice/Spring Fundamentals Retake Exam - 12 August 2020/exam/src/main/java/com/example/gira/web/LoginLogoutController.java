@@ -3,6 +3,7 @@ package com.example.gira.web;
 import com.example.gira.model.dto.binding.UserLoginBindingModel;
 import com.example.gira.model.dto.service.UserLoginServiceModel;
 import com.example.gira.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -51,4 +52,13 @@ public class LoginLogoutController {
 
     return "redirect:/home";
   }
+
+  @GetMapping("/logout")
+  public String logout(HttpSession httpSession) {
+    httpSession.invalidate();
+    userService.logout();
+
+    return "redirect:/";
+  }
+
 }
