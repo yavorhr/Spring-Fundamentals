@@ -5,51 +5,84 @@
 </head>
 
 <body>
-  <div class="page-container">
+<div class="page-container">
     <header>
-      <nav th:replace="fragments/navbar">
-      </nav>
+        <nav th:replace="fragments/navbar">
+        </nav>
     </header>
     <main class="content-wrap">
-      <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
-      <hr class="hr-3 w-25 bg-white" />
-      <form class="mx-auto w-25 bg-blur" method="" action="/">
-        <div class="form-group">
-          <div class="label-holder textCol d-flex justify-content-center">
-            <label for="username" class="h4 mb-2">Username</label>
-          </div>
-          <input type="text" class="form-control" id="username" name="username" />
-          <small class="text-danger">Username error message</small>
-        </div>
-        <div class="form-group">
-          <div class="label-holder textCol d-flex justify-content-center">
-            <label for="email" class="h4 mb-2">Email</label>
-          </div>
-          <input type="email" class="form-control" id="email" name="email" />
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+        <hr class="hr-3 w-25 bg-white"/>
+        <form
+                class="mx-auto w-25 bg-blur"
+                th:action="@{/users/register}"
+                th:method="POST"
+                th:object="${userRegisterBindingModel}">
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="username" class="h4 mb-2">Username</label>
+                </div>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        th:field="*{username}">
+                <small class="text-danger"
+                       th:if="${#fields.hasErrors('username')}"
+                       th:errors="*{username}">Username error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="email" class="h4 mb-2">Email</label>
+                </div>
+                <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        th:field="*{email}">
+                <small class="text-danger"
+                       th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}">Email error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="password" class="h4 mb-2">Password</label>
+                </div>
+                <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        th:field="*{password}">
+                <small class="text-danger"
+                       th:if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}">Password error message
+                </small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                </div>
+                <input
+                        type="password"
+                        class="form-control"
+                        id="confirmPassword"
+                        th:field="*{confirmPassword}">
+            </div>
 
-          <small class="text-danger">Email error message</small>
-        </div>
-        <div class="form-group">
-          <div class="label-holder  textCol d-flex justify-content-center">
-            <label for="password" class="h4 mb-2">Password</label>
-          </div>
-          <input type="password" class="form-control" id="password" name="password" />
-          <small class="text-danger">Password error message</small>
-        </div>
-        <div class="form-group">
-          <div class="label-holder  textCol d-flex justify-content-center">
-            <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
-          </div>
-          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />
-        </div>
+            <div
+                    th:if="${#fields.hasGlobalErrors()}">
+                <p class="text-danger" th:each="error : ${#fields.globalErrors()}">
+                    <span th:text="${error}"></span>
+                </p>
+            </div>
 
-        <div class="button-holder d-flex justify-content-center">
-          <button type="submit" class="button btn-warning  mb-3" value="Register">Register</button>
-        </div>
-      </form>
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="button btn-warning  mb-3" value="Register">Register</button>
+            </div>
+        </form>
     </main>
     <footer th:replace="fragments/footer">
     </footer>
-  </div>
+</div>
 </body>
 </html>
