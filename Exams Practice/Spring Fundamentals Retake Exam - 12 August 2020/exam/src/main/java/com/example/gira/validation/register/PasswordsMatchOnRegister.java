@@ -1,4 +1,4 @@
-package com.example.gira.validation;
+package com.example.gira.validation.register;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -8,14 +8,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.METHOD})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
-public @interface UniqueEmail {
-
-  String message() default "Email is already taken";
+@Constraint(validatedBy = PasswordsMatchValidator.class)
+public @interface PasswordsMatchOnRegister {
+  String message() default "Password and confirm password don't match";
 
   Class<?>[] groups() default { };
 
   Class<? extends Payload>[] payload() default { };
+
 }

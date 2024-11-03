@@ -1,4 +1,4 @@
-package com.example.gira.validation;
+package com.example.gira.validation.register;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

@@ -1,4 +1,4 @@
-package com.example.gira.validation;
+package com.example.gira.validation.register;
 
 import com.example.gira.model.dto.binding.UserRegisterBindingModel;
 import jakarta.validation.ConstraintValidator;
