@@ -1,5 +1,6 @@
 package com.example.gira.validation.register;
 
+import com.example.gira.validation.login.EmailAndPasswordValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
