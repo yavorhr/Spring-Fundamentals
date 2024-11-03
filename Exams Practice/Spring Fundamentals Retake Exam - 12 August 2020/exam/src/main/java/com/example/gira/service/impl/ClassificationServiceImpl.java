@@ -7,6 +7,7 @@ import com.example.gira.service.ClassificationService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 public class ClassificationServiceImpl implements ClassificationService {
@@ -24,5 +25,10 @@ public class ClassificationServiceImpl implements ClassificationService {
               obj.setClassification(e);
               this.classificationRepository.save(obj);
             });
+  }
+
+  @Override
+  public Optional<Classification> findByName(ClassificationEnum classificationEnum) {
+    return this.classificationRepository.findByClassification(classificationEnum);
   }
 }
