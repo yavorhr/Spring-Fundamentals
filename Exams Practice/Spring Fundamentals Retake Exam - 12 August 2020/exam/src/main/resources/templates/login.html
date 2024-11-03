@@ -13,21 +13,40 @@
     <main class="content-wrap">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
         <hr class="hr-3 w-25 bg-white"/>
-        <form class="mx-auto w-25 bg-blur"  method="" action="/" >
-            <small class="text-danger new-line">Error message</small>
+        <form
+                class="mx-auto w-25 bg-blur"
+                th:method="POST"
+                th:action="@{/users/login}"
+                th:object="${userLoginBindingModel}">
+
+            <div
+                    th:if="${#fields.hasGlobalErrors()}">
+                <small
+                        th:each="err : ${#fields.globalErrors()}"
+                        th:text="${err}" class="text-danger new-line">Error message
+                </small>
+            </div>
             <br/>
-            <small class="text-danger new-line">Incorrect email or password!</small>
+
             <div class="form-group input-container">
                 <div class="input-container label-holder d-flex justify-content-center">
                     <label for="email" class="h3 mb-2">Email</label>
                 </div>
-                <input  type="text" class="form-control" id="email" name="email"/>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        th:field="*{email}">
             </div>
             <div class="form-group">
                 <div class="label-holder d-flex justify-content-center">
                     <label for="password" class="h3 mb-2">Password</label>
                 </div>
-                <input type="password" class="form-control" id="password" name="password"/>
+                <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        th:field="*{password}"/>
             </div>
             <div class="button-holder d-flex justify-content-center">
                 <button type="submit" class="button  mb-3">Login</button>
