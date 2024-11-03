@@ -23,29 +23,51 @@
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="name" class="h4 mb-2">Name</label>
                 </div>
-                <input type="text" class="form-control" id="name" name="name"/>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        th:field="*{name}"/>
                 <small class="text-danger">Name error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="description" class="h4 mb-2">Description</label>
                 </div>
-                <input type="text" class="form-control" id="description" name="description"/>
-
-                <small class="text-danger">Description error message</small>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="description"
+                        th:field="*{description}"
+                        th:errorclass="is-invalid"/>
+                <small class="invalid-feedback text-danger">
+                    Description error message
+                </small>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="dueDate" class="h4 mb-2">Due Date</label>
                 </div>
-                <input type="date" class="form-control" id="dueDate" name="dueDate"/>
-                <small class="text-danger">Date error message</small>
+                <input
+                        type="date"
+                        class="form-control"
+                        id="dueDate"
+                        th:field="*{dueDate}"
+                        th:errorclass="is-invalid"/>
+                <small class="invalid-feedback text-danger">
+                   Due date can't be in the past
+                </small>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="classification" class="h4 mb-2">Classification</label>
                 </div>
-                <select type="text" class="form-control" id="classification" name="classification">
+                <select
+                        type="text"
+                        class="form-control"
+                        id="classification"
+                        th:field="*{classification}"
+                        th:errorclass="is-invalid">
                     <option value="">Select Classification</option>
                     <option th:each="classification : ${classifications}"
                             th:value="${classification}"
@@ -53,7 +75,7 @@
                             th:selected="${classification} == *{classificationEnum}">FEATURE
                     </option>
                 </select>
-                <small class="text-danger">Classification error message</small>
+                <small class="invalid-feedback text-danger">Please select classification</small>
             </div>
 
             <div class="button-holder d-flex justify-content-center">
