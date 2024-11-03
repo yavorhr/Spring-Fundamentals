@@ -2,6 +2,7 @@ package com.example.gira.model.dto.binding;
 
 import com.example.gira.model.entity.UserEntity;
 import com.example.gira.model.entity.enums.ClassificationEnum;
+import com.example.gira.validation.addTask.UniqueTaskName;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,6 +17,7 @@ public class AddTaskBindingModel {
   public AddTaskBindingModel() {
   }
 
+  @UniqueTaskName
   @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
   @NotEmpty(message = "Name is required")
   public String getName() {
