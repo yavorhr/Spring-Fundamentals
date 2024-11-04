@@ -1,6 +1,5 @@
 package com.example.gira.model.dto.service;
 
-import com.example.gira.model.entity.UserEntity;
 import com.example.gira.model.entity.enums.ClassificationEnum;
 
 import java.time.LocalDate;
@@ -9,7 +8,7 @@ public class AddTaskServiceModel {
   private String name;
   private String description;
   private LocalDate dueDate;
-  private ClassificationEnum classificationEnum;
+  private ClassificationEnum classification;
 
   public AddTaskServiceModel() {
   }
@@ -26,8 +25,8 @@ public class AddTaskServiceModel {
     return dueDate;
   }
 
-  public ClassificationEnum getClassificationEnum() {
-    return classificationEnum;
+  public ClassificationEnum getClassification() {
+    return classification;
   }
 
   public AddTaskServiceModel setName(String name) {
@@ -45,8 +44,8 @@ public class AddTaskServiceModel {
     return this;
   }
 
-  public AddTaskServiceModel setClassificationEnum(ClassificationEnum classificationEnum) {
-    this.classificationEnum = classificationEnum;
+  public AddTaskServiceModel setClassification(ClassificationEnum classification) {
+    this.classification = classification;
     return this;
   }
 }
