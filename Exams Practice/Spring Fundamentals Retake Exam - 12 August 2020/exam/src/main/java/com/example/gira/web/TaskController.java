@@ -4,6 +4,7 @@ import com.example.gira.model.dto.binding.AddTaskBindingModel;
 import com.example.gira.model.dto.service.AddTaskServiceModel;
 import com.example.gira.model.entity.enums.ClassificationEnum;
 import com.example.gira.service.TaskService;
+import com.example.gira.util.CurrentUser;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class TaskController {
   private final TaskService taskService;
   private final ModelMapper modelMapper;
+  private final CurrentUser currentUser;
 
-  public TaskController(TaskService taskService, ModelMapper modelMapper) {
+  public TaskController(TaskService taskService, ModelMapper modelMapper, CurrentUser currentUser) {
     this.taskService = taskService;
     this.modelMapper = modelMapper;
+    this.currentUser = currentUser;
   }
 
   @ModelAttribute("addTaskBindingModel")
@@ -36,6 +39,10 @@ public class TaskController {
   @GetMapping("/tasks/add")
   public String addTaskPage() {
 
+    if (!this.currentUser.isLoggedIn()){
+      return "redirect:/users/login";
+    }
+    
     return "add-task";
   }
 
