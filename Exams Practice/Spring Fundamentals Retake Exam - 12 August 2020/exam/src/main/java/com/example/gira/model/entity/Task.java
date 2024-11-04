@@ -29,7 +29,8 @@ public class Task extends BaseEntity {
   public String getDescription() {
     return description;
   }
-  @Column(unique = true, nullable = false)
+
+  @Column(nullable = false)
   public ProgressEnum getProgress() {
     return progress;
   }
