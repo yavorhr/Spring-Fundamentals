@@ -1,6 +1,5 @@
 package com.example.gira.model.dto.binding;
 
-import com.example.gira.model.entity.UserEntity;
 import com.example.gira.model.entity.enums.ClassificationEnum;
 import com.example.gira.validation.addTask.UniqueTaskName;
 import jakarta.validation.constraints.*;
@@ -12,33 +11,31 @@ public class AddTaskBindingModel {
   private String name;
   private String description;
   private LocalDate dueDate;
-  private ClassificationEnum classificationEnum;
+  private ClassificationEnum classification;
 
   public AddTaskBindingModel() {
   }
 
   @UniqueTaskName
   @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
-  @NotEmpty(message = "Name is required")
   public String getName() {
     return name;
   }
 
   @Size(min = 5, message = "Description must be minimum 5 characters")
-  @NotEmpty(message = "Description is required")
   public String getDescription() {
     return description;
   }
 
-  @FutureOrPresent(message = "Date can't be in the past")
+  @FutureOrPresent(message = "Due date can't be in the past")
   @DateTimeFormat(pattern ="yyyy-MM-dd")
   public LocalDate getDueDate() {
     return dueDate;
   }
 
   @NotNull
-  public ClassificationEnum getClassificationEnum() {
-    return classificationEnum;
+  public ClassificationEnum getClassification() {
+    return classification;
   }
 
   public AddTaskBindingModel setName(String name) {
@@ -56,8 +53,8 @@ public class AddTaskBindingModel {
     return this;
   }
 
-  public AddTaskBindingModel setClassificationEnum(ClassificationEnum classificationEnum) {
-    this.classificationEnum = classificationEnum;
+  public AddTaskBindingModel setClassification(ClassificationEnum classification) {
+    this.classification = classification;
     return this;
   }
 }
