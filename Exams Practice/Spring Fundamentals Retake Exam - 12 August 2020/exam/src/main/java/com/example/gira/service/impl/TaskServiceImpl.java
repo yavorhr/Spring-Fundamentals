@@ -1,6 +1,7 @@
 package com.example.gira.service.impl;
 
 import com.example.gira.model.dto.service.AddTaskServiceModel;
+import com.example.gira.model.entity.Classification;
 import com.example.gira.model.entity.Task;
 import com.example.gira.model.entity.enums.ProgressEnum;
 import com.example.gira.repository.TaskRepository;
@@ -30,8 +31,14 @@ public class TaskServiceImpl implements TaskService {
   public void addTask(AddTaskServiceModel serviceModel) {
     Task entity = this.modelMapper.map(serviceModel, Task.class);
     entity.setUserEntity(this.userService.findById(this.currentUser.getId()).get());
-    entity.setClassification(this.classificationService.findByName(serviceModel.getClassificationEnum()).get());
+
+    Classification classificationEntity =
+            this.classificationService.findByName(serviceModel.getClassification()).get();
+
+    entity.setClassification(classificationEntity);
     entity.setProgress(ProgressEnum.OPEN);
+
+    this.taskRepository.save(entity);
   }
 
   @Override
