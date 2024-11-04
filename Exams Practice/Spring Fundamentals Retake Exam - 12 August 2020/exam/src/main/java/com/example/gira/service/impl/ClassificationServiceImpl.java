@@ -19,12 +19,14 @@ public class ClassificationServiceImpl implements ClassificationService {
 
   @Override
   public void initObjects() {
-    Arrays.stream(ClassificationEnum.values())
-            .forEach(e -> {
-              Classification obj = new Classification();
-              obj.setClassification(e);
-              this.classificationRepository.save(obj);
-            });
+    if (this.classificationRepository.count() == 0) {
+      Arrays.stream(ClassificationEnum.values())
+              .forEach(e -> {
+                Classification obj = new Classification();
+                obj.setClassification(e);
+                this.classificationRepository.save(obj);
+              });
+    }
   }
 
   @Override
