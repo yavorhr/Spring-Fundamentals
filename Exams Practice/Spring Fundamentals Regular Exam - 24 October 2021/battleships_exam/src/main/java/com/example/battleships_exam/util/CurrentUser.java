@@ -6,15 +6,18 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
-public class CurrentUser implements CurrentUserContext{
+public class CurrentUser implements CurrentUserContext {
   private Long id;
   private String username;
-  private String password;
   private String email;
+  private String fullName;
 
   public CurrentUser() {
   }
 
+  public String getFullName() {
+    return fullName;
+  }
 
   public Long getId() {
     return id;
@@ -24,21 +27,12 @@ public class CurrentUser implements CurrentUserContext{
     return username;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
   public String getEmail() {
     return email;
   }
 
   public CurrentUser setUsername(String username) {
     this.username = username;
-    return this;
-  }
-
-  public CurrentUser setPassword(String password) {
-    this.password = password;
     return this;
   }
 
@@ -52,6 +46,11 @@ public class CurrentUser implements CurrentUserContext{
     return this;
   }
 
+  public CurrentUser setFullName(String fullName) {
+    this.fullName = fullName;
+    return this;
+  }
+
   @Override
   public boolean isLoggedIn() {
     return this.id != null;
@@ -62,7 +61,8 @@ public class CurrentUser implements CurrentUserContext{
     this
             .setEmail(userEntity.getEmail())
             .setId(userEntity.getId())
-            .setUsername(getUsername());
+            .setUsername(getUsername())
+            .setFullName(userEntity.getFullName());
   }
 
   @Override
@@ -70,6 +70,7 @@ public class CurrentUser implements CurrentUserContext{
     this
             .setEmail("")
             .setId(null)
-            .setUsername("");
+            .setUsername("")
+            .setFullName("");
   }
 }
