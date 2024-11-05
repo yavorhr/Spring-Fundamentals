@@ -9,9 +9,7 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -42,7 +40,7 @@ public class TaskController {
     if (!this.currentUser.isLoggedIn()){
       return "redirect:/users/login";
     }
-    
+
     return "add-task";
   }
 
@@ -61,6 +59,12 @@ public class TaskController {
 
     this.taskService.addTask(modelMapper.map(addTaskBindingModel, AddTaskServiceModel.class));
 
+    return "redirect:/home";
+  }
+
+  @PatchMapping("/tasks/update")
+  public String updateProgress(@RequestParam("id") Long taskId) {
+    taskService.updateTaskProgress(taskId);
     return "redirect:/home";
   }
 }
