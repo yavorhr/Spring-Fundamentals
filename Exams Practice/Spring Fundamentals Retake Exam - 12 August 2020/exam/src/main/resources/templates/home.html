@@ -12,16 +12,20 @@
     <main class="content-wrap">
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Tasks</span></h1>
         <hr class="hr-3 w-75 bg-white"/>
-        <form class="mx-auto w-75 " method="" action="/">
-
-            <div class="card-group task-card">
-                <div class="card">
-
+        <form class="mx-auto w-75 "
+              th:action="@{/tasks/update}"
+              method="post">
+            <div
+                    th:each="task : ${tasks}"
+                    th:object="${task}"
+                    class="card-group task-card">
+                <div
+                        class="card">
                     <div class="card-title">
                         <h5 class="card-title">Name</h5>
                     </div>
                     <div class="card-footer">
-                        <small>Repair Laptop</small>
+                        <small th:text="*{name}">Repair Laptop</small>
                     </div>
                 </div>
                 <div class="card">
@@ -30,7 +34,7 @@
                         <h5 class="card-title">Assigned to</h5>
                     </div>
                     <div class="card-footer">
-                        <small>George</small>
+                        <small th:text="*{user}">George</small>
                     </div>
                 </div>
                 <div class="card">
@@ -39,7 +43,8 @@
                         <h5 class="card-title">Classification</h5>
                     </div>
                     <div class="card-footer">
-                        <small class="classifications SUPPORT">SUPPORT</small>
+                        <small th:text="*{classification}"
+                               class="classifications SUPPORT">SUPPORT</small>
                     </div>
                 </div>
                 <div class="card">
@@ -47,7 +52,7 @@
                         <h5 class="card-title">Due Date</h5>
                     </div>
                     <div class="card-footer">
-                        <small>2020-08-30</small>
+                        <small th:text="*{dueDate}">2020-08-30</small>
                     </div>
                 </div>
                 <div class="card">
@@ -55,13 +60,18 @@
                         <h5 class="card-title">Progress</h5>
                     </div>
                     <div class="card-footer">
-                        <small>OPEN</small>
+                        <small th:text="*{progress}">OPEN</small>
                     </div>
                 </div>
 
-                <a class="button prBtn">Progress</a>
+                <div>
+                    <input type="hidden" name="_method" value="patch"/>
+                    <input type="hidden"
+                           th:name="id"
+                           th:value="*{taskId}"/>
+                    <button type="submit" class="button">Progress</button>
+                </div>
             </div>
-
         </form>
     </main>
 
