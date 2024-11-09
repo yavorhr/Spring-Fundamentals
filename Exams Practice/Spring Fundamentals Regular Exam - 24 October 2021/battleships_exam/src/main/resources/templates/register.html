@@ -112,6 +112,14 @@
                                         placeholder="Confirm Password">
                             </div>
                         </div>
+
+                        <div
+                                th:if="${#fields.hasGlobalErrors()}">
+                            <p class="text-danger" th:each="error : ${#fields.globalErrors()}">
+                                <span th:text="${error}"></span>
+                            </p>
+                        </div>
+
                         <button type="submit" class="btn btn-warning w-50">Register</button>
                     </form>
                 </div>
