@@ -1,5 +1,6 @@
 package com.example.battleships_exam.model.dto.binding;
 
+import com.example.battleships_exam.validation.register.UniqueEmail;
 import com.example.battleships_exam.validation.register.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ public class UserRegisterBindingModel {
 
   @UniqueUsername
   @NotNull
-  @Size(min = 3,max = 10)
+  @Size(min = 3,max = 10,message = "Username must be between 5 and 10 symbols")
   public String getUsername() {
     return username;
   }
@@ -29,7 +30,8 @@ public class UserRegisterBindingModel {
   }
 
   @NotNull
-  @Email
+  @Email(message = "Please enter valid email")
+  @UniqueEmail
   public String getEmail() {
     return email;
   }
