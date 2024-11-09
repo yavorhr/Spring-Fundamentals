@@ -1,6 +1,7 @@
 package com.example.battleships_exam.model.dto.binding;
 
 import com.example.battleships_exam.model.entity.enums.CategoryEnum;
+import com.example.battleships_exam.validation.ship.UniqueShipName;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class AddShipBindingModel {
   public AddShipBindingModel() {
   }
 
+  @UniqueShipName
   @NotNull
   @Size(min = 2,max = 10)
   public String getName() {
