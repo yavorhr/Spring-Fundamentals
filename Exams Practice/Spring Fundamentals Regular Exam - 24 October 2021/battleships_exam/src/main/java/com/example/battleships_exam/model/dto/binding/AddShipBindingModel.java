@@ -35,12 +35,13 @@ public class AddShipBindingModel {
     return power;
   }
 
-  @PastOrPresent(message = "Creation date can't be in the future")
+  @PastOrPresent(message = "    Created date cannot be in the future")
   @DateTimeFormat(pattern ="yyyy-MM-dd")
   public LocalDate getCreated() {
     return created;
   }
 
+  @NotNull
   public CategoryEnum getCategory() {
     return category;
   }
