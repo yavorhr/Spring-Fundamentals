@@ -1,11 +1,13 @@
 package com.example.battleships_exam.model.dto.binding;
 
+import com.example.battleships_exam.validation.register.PasswordsMatchOnRegister;
 import com.example.battleships_exam.validation.register.UniqueEmail;
 import com.example.battleships_exam.validation.register.UniqueUsername;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+@PasswordsMatchOnRegister
 public class UserRegisterBindingModel {
   private String username;
   private String fullName;
