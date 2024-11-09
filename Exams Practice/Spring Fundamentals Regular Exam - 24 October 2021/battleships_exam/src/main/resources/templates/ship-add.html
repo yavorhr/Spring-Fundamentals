@@ -15,23 +15,33 @@
                 <strong class="bg-blur rounded border-white pl-3 font-weight-bold">Add New Ship</strong></h1>
         </div>
         <div class="container bg-blur rounded p-5 mt-5 w-75">
-            <form action="/ships/add" method="POST"
-                  class=" text-center text-light">
+            <form
+                    th:action="/ships/add"
+                    th:method="POST"
+                    th:object="${addShipBindingModel}"
+                    class=" text-center text-light">
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name"
-                               aria-describedby="nameHelpInline" placeholder="Name">
+                        <input
+                                th:field="*{name}"
+                                type="text" class="form-control"
+                                id="name"
+                                aria-describedby="nameHelpInline"
+                                placeholder="Name">
                         <small id="nameHelpInline" class="bg-danger text-light rounded">
-                            Name must be between 2 and 10 characters.
+                            Name error message
                         </small>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="power" class="col-sm-2 col-form-label">Power</label>
                     <div class="col-sm-10">
-                        <input type="number" step="1" class="form-control" id="power"
-                               aria-describedby="powerHelpInline">
+                        <input
+                                type="number"
+                                step="1" class="form-control"
+                                id="power"
+                                aria-describedby="powerHelpInline">
                         <small id="powerHelpInline" class="bg-danger text-light rounded">
                             The power must be positive.
                         </small>
