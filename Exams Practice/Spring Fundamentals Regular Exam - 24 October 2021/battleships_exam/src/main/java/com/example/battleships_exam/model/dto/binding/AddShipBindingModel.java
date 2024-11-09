@@ -18,7 +18,7 @@ public class AddShipBindingModel {
 
   @UniqueShipName
   @NotNull
-  @Size(min = 2,max = 10)
+  @Size(min = 2,max = 10, message = "Name must be between 2 and 10 characters")
   public String getName() {
     return name;
   }
