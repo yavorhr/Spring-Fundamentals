@@ -1,6 +1,8 @@
 package com.example.battleships_exam.service.impl;
 
 import com.example.battleships_exam.model.dto.service.AddShipServiceModel;
+import com.example.battleships_exam.model.dto.view.ShipIdAndNameViewModel;
+import com.example.battleships_exam.model.dto.view.ShipViewModel;
 import com.example.battleships_exam.model.entity.Ship;
 import com.example.battleships_exam.repository.ShipRepository;
 import com.example.battleships_exam.service.CategoryService;
@@ -9,6 +11,9 @@ import com.example.battleships_exam.service.UserService;
 import com.example.battleships_exam.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShipServiceImpl implements ShipService {
@@ -38,5 +43,34 @@ public class ShipServiceImpl implements ShipService {
     ship.setUser(this.userService.findUserById(currentUser.getId()).get());
 
     this.shipRepository.save(ship);
+  }
+
+  @Override
+  public List<ShipIdAndNameViewModel> findShipsByUserId(Long id) {
+    return this.shipRepository.findAllByUserId(id)
+            .stream()
+            .map(s -> this.mapToViewModel(s, ShipIdAndNameViewModel.class))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ShipIdAndNameViewModel> findOtherShips(Long id) {
+    return this.shipRepository.findOtherShips(id)
+            .stream()
+            .map(s -> this.mapToViewModel(s, ShipIdAndNameViewModel.class))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ShipViewModel> findAllShips() {
+    return this.shipRepository.findAll()
+            .stream()
+            .map(s -> this.mapToViewModel(s, ShipViewModel.class))
+            .collect(Collectors.toList());
+  }
+
+  // Helpers
+  private <D, T> D mapToViewModel(T source, Class<D> destinationType) {
+    return this.modelMapper.map(source, destinationType);
   }
 }
