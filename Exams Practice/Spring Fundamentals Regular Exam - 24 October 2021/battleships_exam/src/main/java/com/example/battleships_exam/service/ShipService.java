@@ -16,4 +16,6 @@ public interface ShipService {
   List<ShipIdAndNameViewModel> findOtherShips(Long id);
 
   List<ShipViewModel> findAllShips();
+
+  void startFight(String attacker, String defender);
 }

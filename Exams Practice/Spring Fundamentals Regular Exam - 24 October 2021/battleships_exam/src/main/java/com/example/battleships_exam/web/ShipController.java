@@ -9,9 +9,7 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -60,6 +58,15 @@ public class ShipController {
     }
 
     this.shipService.addShip(this.modelMapper.map(addShipBindingModel, AddShipServiceModel.class));
+
+    return "redirect:/home";
+  }
+
+  @PatchMapping("/ships/fire")
+  public String fireShips(@RequestParam String attacker,
+                          @RequestParam String defender){
+
+   this.shipService.startFight(attacker,defender);
 
     return "redirect:/home";
   }
