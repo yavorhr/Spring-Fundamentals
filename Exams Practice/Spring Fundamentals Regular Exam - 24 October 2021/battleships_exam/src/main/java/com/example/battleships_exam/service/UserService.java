@@ -18,4 +18,6 @@ public interface UserService {
   void loginUser(UserLoginServiceModel map);
 
   Optional<UserEntity> findUserById(Long id);
+
+  void logout();
 }

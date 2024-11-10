@@ -4,6 +4,7 @@ import com.example.battleships_exam.model.dto.binding.UserLoginBindingModel;
 import com.example.battleships_exam.model.dto.service.UserLoginServiceModel;
 import com.example.battleships_exam.repository.UserRepository;
 import com.example.battleships_exam.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -49,5 +50,13 @@ public class LoginLogoutController {
     this.userService.loginUser(this.modelMapper.map(userLoginBindingModel, UserLoginServiceModel.class));
 
     return "redirect:/home";
+  }
+
+  @GetMapping("/users/logout")
+  public String logout(HttpSession httpSession){
+    httpSession.invalidate();
+    this.userService.logout();
+
+    return "redirect:/";
   }
 }

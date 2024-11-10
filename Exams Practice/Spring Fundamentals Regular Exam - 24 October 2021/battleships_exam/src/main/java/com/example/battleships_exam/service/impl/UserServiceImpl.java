@@ -59,4 +59,9 @@ public class UserServiceImpl implements UserService {
   public Optional<UserEntity> findUserById(Long id) {
     return this.userRepository.findById(id);
   }
+
+  @Override
+  public void logout() {
+    this.currentUser.logout();
+  }
 }
