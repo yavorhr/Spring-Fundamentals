@@ -13,8 +13,9 @@
     <div class="jumbotron">
         <h1 class="text-center p-5 text-white font-weight-bold">Battle</h1>
         <form
-                action="/"
-                method="" class="row mb-2">
+                th:action="@{/ships/fire}"
+                th:method="patch"
+                class="row mb-2">
             <div class="col-md-6">
                 <div class="card flex-md-row bg-blur mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
@@ -23,7 +24,10 @@
                             Select the attacker
                         </h3>
                         <div class="mb-1 text-white">Select one of the ships that are owned by the current user</div>
-                        <select class="dropdown1 form-select mt-5" aria-label="Default select example">
+                        <select
+                                class="dropdown1 form-select mt-5"
+                                aria-label="Default select example"
+                                name="attacker">
                             <option value="" disabled selected>Select one of the ships that are owned by the current
                                 user
                             </option>
@@ -47,7 +51,10 @@
                             Select the defender
                         </h3>
                         <div class="mb-1 text-white">Select one of the ships that are owned by other users</div>
-                        <select class="dropdown2 form-select mt-5" aria-label="Default select example">
+                        <select
+                                class="dropdown2 form-select mt-5"
+                                aria-label="Default select example"
+                                name="defender">
                             <option value="" disabled selected>Select one of the ships that are owned by other users
                             </option>
                             <option th:each="ship : ${defenderShips}"
