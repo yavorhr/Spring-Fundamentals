@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ShipRepository extends JpaRepository<Ship,Long> {
 
-  Optional<CategoryRepository> findByName(String name);
+  Optional<Ship> findByName(String name);
 
   List<Ship> findAllByUserId(Long user_id);
 
