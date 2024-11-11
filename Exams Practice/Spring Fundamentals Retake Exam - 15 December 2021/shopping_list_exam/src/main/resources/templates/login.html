@@ -19,7 +19,7 @@
             th:object="${userLoginBindingModel}">
         <br/>
 
-        <th:block th:if="${#fields.hasGlobalErrors()}"> >
+        <th:block th:if="${#fields.hasGlobalErrors()}">
             <small
                     th:each="err : ${#fields.globalErrors()}"
                     th:text="${err}"
