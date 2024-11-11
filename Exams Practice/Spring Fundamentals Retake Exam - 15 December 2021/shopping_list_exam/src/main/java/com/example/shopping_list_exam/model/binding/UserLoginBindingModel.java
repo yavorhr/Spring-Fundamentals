@@ -1,8 +1,10 @@
 package com.example.shopping_list_exam.model.binding;
 
+import com.example.shopping_list_exam.validation.login.DoesUserExist;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+@DoesUserExist
 public class UserLoginBindingModel {
   private String username;
   private String password;
