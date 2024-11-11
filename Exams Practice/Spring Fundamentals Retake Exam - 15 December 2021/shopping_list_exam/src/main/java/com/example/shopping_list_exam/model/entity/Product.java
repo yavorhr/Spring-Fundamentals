@@ -15,8 +15,14 @@ public class Product extends BaseEntity {
   private BigDecimal price;
   private LocalDate neededBefore;
   private Category category;
+  private UserEntity user;
 
   public Product() {
+  }
+
+  @ManyToOne
+  public UserEntity getUser() {
+    return user;
   }
 
   @Column(unique = true,nullable = false)
@@ -66,6 +72,11 @@ public class Product extends BaseEntity {
 
   public Product setCategory(Category category) {
     this.category = category;
+    return this;
+  }
+
+  public Product setUser(UserEntity user) {
+    this.user = user;
     return this;
   }
 }
