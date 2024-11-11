@@ -6,27 +6,57 @@
 
 <body>
 <header>
-    <nav th:replace="fragments/navbar" >
+    <nav th:replace="fragments/navbar">
     </nav>
 </header>
 <main>
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
-    <form class="mx-auto w-25 bg-blur" action="/" method="">    
-        <small class="text-danger">Error message</small>
-        <br/>  
-        <small class="text-danger">Incorrect username or password!</small>
+    <form
+            class="mx-auto w-25 bg-blur"
+            th:action="@{/users/login}"
+            th:method="POST"
+            th:object="${userLoginBindingModel}">
+        <br/>
+
+        <th:block th:if="${#fields.hasGlobalErrors()}"> >
+            <small
+                    th:each="err : ${#fields.globalErrors()}"
+                    th:text="${err}"
+                    class="text-danger">Incorrect username or password!</small>
+        </th:block>
+
         <div class="form-group">
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="username" class="h3 mb-2">Username</label>
             </div>
-            <input type="text" class="form-control" id="username" name="username"/>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    th:field="*{username}"
+                    th:errorclass="is-invalid">
         </div>
+        <small
+                id="usernameHelpInline"
+                class="invalid-feedback bg-danger text-light rounded">
+            Username length must be between 3 and 20 symbols
+        </small>
         <div class="form-group">
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="password" class="h3 mb-2">Password</label>
             </div>
-            <input type="password" class="form-control" id="password" name="password"/>
+            <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    th:field="*{password}"
+                    th:errorclass="is-invalid">
+            <small
+                    id="passwordHelpInline"
+                    class="invalid-feedback bg-danger text-light rounded">
+                Password length must be between 3 and 20 symbols
+            </small>
         </div>
         <div class="button-holder d-flex justify-content-center">
             <button type="submit" class="btn btn-warning  mb-3">Login</button>
