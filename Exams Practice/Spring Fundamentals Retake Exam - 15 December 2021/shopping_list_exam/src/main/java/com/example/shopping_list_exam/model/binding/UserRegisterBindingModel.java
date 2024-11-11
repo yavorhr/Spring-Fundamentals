@@ -4,6 +4,7 @@ import com.example.shopping_list_exam.validation.register.PasswordsMatchOnRegist
 import com.example.shopping_list_exam.validation.register.UniqueEmail;
 import com.example.shopping_list_exam.validation.register.UniqueUsername;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -19,7 +20,7 @@ public class UserRegisterBindingModel {
 
   @UniqueUsername
   @NotNull
-  @Size(min = 3,max = 20)
+  @Size(min = 3,max = 20, message = "Username must be between 3 and 20 symbols")
   public String getUsername() {
     return username;
   }
@@ -31,7 +32,7 @@ public class UserRegisterBindingModel {
   }
 
   @UniqueEmail
-  @NotNull
+  @NotBlank(message = "Please enter email")
   @Email
   public String getEmail() {
     return email;
