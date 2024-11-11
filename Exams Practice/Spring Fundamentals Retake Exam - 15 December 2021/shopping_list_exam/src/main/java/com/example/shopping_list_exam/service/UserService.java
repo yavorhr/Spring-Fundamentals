@@ -1,5 +1,6 @@
 package com.example.shopping_list_exam.service;
 
+import com.example.shopping_list_exam.model.service.UserLoginServiceModel;
 import com.example.shopping_list_exam.model.service.UserRegisterServiceModel;
 
 public interface UserService {
@@ -7,5 +8,9 @@ public interface UserService {
 
   boolean isEmailAvailable(String email);
 
-  void registerUser(UserRegisterServiceModel map);
+  void registerUser(UserRegisterServiceModel serviceModel);
+
+  void loginUser(UserLoginServiceModel serviceModel);
+
+  boolean doesUserExist(UserLoginServiceModel map);
 }
