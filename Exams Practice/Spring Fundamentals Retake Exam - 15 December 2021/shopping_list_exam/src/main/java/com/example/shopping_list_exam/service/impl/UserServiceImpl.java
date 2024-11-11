@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
             serviceModel.getPassword())
             .isPresent();
   }
+
+  @Override
+  public void logout() {
+    this.currentUser.logout();
+  }
 }

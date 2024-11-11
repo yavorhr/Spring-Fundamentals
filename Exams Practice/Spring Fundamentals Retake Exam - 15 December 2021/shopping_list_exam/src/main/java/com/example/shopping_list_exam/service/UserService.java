@@ -13,4 +13,6 @@ public interface UserService {
   void loginUser(UserLoginServiceModel serviceModel);
 
   boolean doesUserExist(UserLoginServiceModel map);
+
+  void logout();
 }

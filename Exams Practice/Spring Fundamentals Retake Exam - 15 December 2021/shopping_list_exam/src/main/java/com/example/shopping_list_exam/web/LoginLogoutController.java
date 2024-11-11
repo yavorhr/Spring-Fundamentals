@@ -3,6 +3,7 @@ package com.example.shopping_list_exam.web;
 import com.example.shopping_list_exam.model.binding.UserLoginBindingModel;
 import com.example.shopping_list_exam.model.service.UserLoginServiceModel;
 import com.example.shopping_list_exam.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,14 @@ public class LoginLogoutController {
     this.userService.loginUser(this.modelMapper.map(userLoginBindingModel, UserLoginServiceModel.class));
 
     return "redirect:/home";
+  }
+
+  @GetMapping("/users/logout")
+  public String logout(HttpSession httpSession){
+    httpSession.invalidate();
+    this.userService.logout();
+
+    return "redirect:/";
   }
 
 }
