@@ -66,4 +66,9 @@ public class ProductServiceImpl implements ProductService {
             .sum();
   }
 
+  @Override
+  public void removeProduct(Long id) {
+    this.productRepository.deleteById(id);
+  }
+
 }

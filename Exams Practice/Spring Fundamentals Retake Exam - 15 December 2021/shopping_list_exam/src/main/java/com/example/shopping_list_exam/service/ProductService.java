@@ -13,4 +13,6 @@ public interface ProductService {
   Collection<ProductViewModel> findAllProductsByUser(Long id);
 
   Integer getTotalPriceOfProducts();
+
+  void removeProduct(Long id);
 }

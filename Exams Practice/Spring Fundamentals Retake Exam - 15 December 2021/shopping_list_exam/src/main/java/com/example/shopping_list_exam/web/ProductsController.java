@@ -62,4 +62,11 @@ public class ProductsController {
     return "redirect:/home";
   }
 
+  @DeleteMapping("/products/{id}")
+  public String buyProduct(@PathVariable Long id){
+
+    this.productService.removeProduct(id);
+
+    return "redirect:/home";
+  }
 }
