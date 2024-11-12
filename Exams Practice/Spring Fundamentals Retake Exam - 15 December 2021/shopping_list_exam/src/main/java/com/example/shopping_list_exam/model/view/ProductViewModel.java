@@ -8,7 +8,7 @@ public class ProductViewModel {
   private Long id;
   private String name;
   private BigDecimal price;
-  private CategoryEnum categoryEnum;
+  private CategoryEnum category;
 
   public ProductViewModel() {
   }
@@ -25,8 +25,8 @@ public class ProductViewModel {
     return price;
   }
 
-  public CategoryEnum getCategoryEnum() {
-    return categoryEnum;
+  public CategoryEnum getCategory() {
+    return category;
   }
 
   public ProductViewModel setId(Long id) {
@@ -44,8 +44,8 @@ public class ProductViewModel {
     return this;
   }
 
-  public ProductViewModel setCategoryEnum(CategoryEnum categoryEnum) {
-    this.categoryEnum = categoryEnum;
+  public ProductViewModel setCategory(CategoryEnum category) {
+    this.category = category;
     return this;
   }
 }
