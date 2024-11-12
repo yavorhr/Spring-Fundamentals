@@ -6,49 +6,59 @@
 
 <body>
 <header>
-  <nav th:replace="fragments/navbar" >
-  </nav>
+    <nav th:replace="fragments/navbar">
+    </nav>
 </header>
 <main>
     <div class="container bg-blur rounded mt-5 mb-4">
         <h1>All products to buy</h1>
         <div class="row mt-3 mb-3">
             <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
-                <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>     
-                    <div class="mt-3 rounded badge-info">
-                        <img class="mr-2" src="/img/food.png" alt="Food" width="50px" height="50px">
-                        <span>Name: {name} Price: {price} lv</span>
-                        <a class="ml-3 text-danger" href="/">Buy</a>
-                    </div>
+                <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
+                <div
+                        th:each="product : ${products}"
+                        th:if="${product.category.name()} == 'Food'"
+                        class="mt-3 rounded badge-info">
+                    <img class="mr-2" src="/img/food.png" alt="Food" width="50px" height="50px">
+                    <span th:text="|Name: ${product.name} Price: ${product.price} lv|"></span>
+                    <!--                        <span th:text="${product.name}">Name: {} Price: {price} lv</span>-->
+                    <a class="ml-3 text-danger" href="/">Buy</a>
+                </div>
             </div>
             <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
                 <h3 class="mySticky bg-gray text-dark rounded">Drinks</h3>
-                    <div class="mt-3 rounded badge-warning">
-                        <img class="mr-2" src="/img/drink.png" alt="Food" width="50px" height="50px">
-                        <span>Name: {name} Price: {price} lv</span>
-                        <a class="ml-3 text-danger" href="/">Buy</a>
-                    </div>
+                <div th:each="product : ${products}"
+                     th:if="${product.category.name()} == 'Drink'"
+                     class="mt-3 rounded badge-warning">
+                    <img class="mr-2" src="/img/drink.png" alt="Food" width="50px" height="50px">
+                    <span th:text="|Name: ${product.name} Price: ${product.price} lv|"></span>
+                    <a class="ml-3 text-danger" href="/">Buy</a>
+                </div>
             </div>
         </div>
         <div class="row mt-3 mb-3">
             <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
                 <h3 class="mySticky bg-gray text-dark rounded">Households</h3>
-                    <div class="mt-3 rounded badge-success">
-                        <img class="mr-2" src="/img/household.png" alt="Food" width="50px" height="50px">
-                        <span>Name: {name} Price: {price} lv</span>
-                        <a class="ml-3 text-danger" href="/">Buy</a>
-                    </div>
+                <div th:each="product : ${products}"
+                     th:if="${product.category} == 'Household'"
+                     class="mt-3 rounded badge-success">
+                    <img class="mr-2" src="/img/household.png" alt="Food" width="50px" height="50px">
+                    <span th:text="|Name: ${product.name} Price: ${product.price} lv|"></span>
+                    <a class="ml-3 text-danger" href="/">Buy</a>
+                </div>
             </div>
             <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
                 <h3 class="mySticky bg-gray text-dark rounded">Other</h3>
-                    <div class="mt-3 rounded badge-secondary">
-                        <img class="mr-2" src="/img/other.png" alt="Food" width="50px" height="50px">
-                        <span>Name: {name} Price: {price} lv</span>
-                        <a class="ml-3 text-danger" href="/">Buy</a>
-					</div>
+                <div th:each="product : ${products}"
+                     th:if="${product.category} == 'Other'"
+                     class="mt-3 rounded badge-secondary">
+                    <img class="mr-2" src="/img/other.png" alt="Food" width="50px" height="50px">
+                    <span th:text="|Name: ${product.name} Price: ${product.price} lv|"></span>
+                    <a class="ml-3 text-danger" href="/">Buy</a>
+                </div>
             </div>
         </div>
-        <a href="/" class="btn btn-danger">Buy all products for {totalPriceOfProducts} lv|</a>
+        <a href="/" class="btn btn-danger" th:text="|Buy all products for ${totalPrice} lv|" ></a>
     </div>
 </main>
 
