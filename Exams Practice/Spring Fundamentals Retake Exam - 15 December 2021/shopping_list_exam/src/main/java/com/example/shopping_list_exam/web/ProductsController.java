@@ -1,6 +1,7 @@
 package com.example.shopping_list_exam.web;
 
 import com.example.shopping_list_exam.model.binding.AddProductBindingModel;
+import com.example.shopping_list_exam.model.entity.enums.CategoryEnum;
 import com.example.shopping_list_exam.model.service.AddProductServiceModel;
 import com.example.shopping_list_exam.service.ProductService;
 import com.example.shopping_list_exam.util.CurrentUser;
@@ -28,6 +29,11 @@ public class ProductsController {
     return new AddProductBindingModel();
   }
 
+  @ModelAttribute("categories")
+  public CategoryEnum[] categories(){
+    return CategoryEnum.values();
+  }
+
   @GetMapping("/products/add")
   public String addProductPage(){
 
@@ -38,7 +44,7 @@ public class ProductsController {
     return "product-add";
   }
 
-  @PostMapping("/ships/add")
+  @PostMapping("/products/add")
   public String addShip(@Valid AddProductBindingModel addProductBindingModel,
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes){
