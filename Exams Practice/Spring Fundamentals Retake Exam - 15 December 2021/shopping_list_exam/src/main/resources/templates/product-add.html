@@ -14,7 +14,7 @@
     <hr class="hr-3 w-25 bg-white"/>
     <form
             class="mx-auto w-25 bg-blur rounded"
-            th:action="@{/ships/add}"
+            th:action="@{/products/add}"
             th:method="POST"
             th:object="${addProductBindingModel}">
         <div class="form-group">
@@ -25,8 +25,11 @@
                     type="text"
                     class="form-control"
                     id="name"
-                    name="name"/>
-            <small class="text-danger"> Name error</small>
+                    th:field="*{name}"/>
+            <small
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"
+                    class="text-danger"> Name error</small>
         </div>
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
@@ -36,9 +39,12 @@
                     type="text"
                     class="form-control"
                     id="description"
-                    name="description">
+                    th:field="*{description}"
+                    th:errorclass="is-invalid"/>
             </textarea>
-            <small class="text-danger">Description error message</small>
+            <small class="invalid-feedback text-danger">
+                Description error message
+            </small>
         </div>
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
@@ -48,8 +54,12 @@
                     type="datetime-local"
                     class="form-control"
                     id="neededBefore"
-                    name="neededBefore"/>
-            <small class="text-danger">Needed before date error</small>
+                    th:field="*{neededBefore}">
+            <small th:if="${#fields.hasErrors('neededBefore')}"
+                   th:errors="*{neededBefore}"
+                   class="text-danger">
+                Needed before date error
+            </small>
         </div>
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
@@ -60,21 +70,31 @@
                     step="0.1"
                     class="form-control"
                     id="price"
-                    name="price"/>
-            <small class="text-danger">Price error message</small>
+                    th:field="*{price}"
+                    th:errorclass="is-invalid"/>
+            <small
+                    class="invalid-feedback text-danger">
+                Price error message
+            </small>
         </div>
         <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
                 <label for="category" class="h4 mb-2">Category</label>
             </div>
-            <select class="browser-default custom-select" id="category" name="category">
-                <option value="">Select category</option>
-                <option value="FOOD">Food</option>
-                <option value="DRINK">Drink</option>
-                <option value="HOUSEHOLD">Household</option>
-                <option value="OTHER">Other</option>
+            <select
+                    class="browser-default custom-select"
+                    id="category"
+                    th:field="*{category}"
+                    th:errorclass="is-invalid">
+                <option value="" disabled >Select category</option>
+                <option
+                        th:each="category : ${categories}"
+                        th:text="${category}"
+                        th:value="${category}"
+                        th:selected="${category} == *{category}">FEATURE
+                        value="FOOD">Food</option>
             </select>
-            <small class="text-danger">Category error message</small>
+            <small class="invalid-feedback text-danger">Category error message</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">
