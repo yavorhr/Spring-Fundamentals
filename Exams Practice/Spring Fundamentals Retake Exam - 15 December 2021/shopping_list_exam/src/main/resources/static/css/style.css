@@ -53,3 +53,9 @@ footer {
     position: sticky;
     left: 0;
 }
+
+.inline-form{
+    display: inline-block;
+    margin: 0; /* Optional: Adjust the margin as needed */
+    padding: 0; /* Optional: Adjust the padding as needed */
+}
