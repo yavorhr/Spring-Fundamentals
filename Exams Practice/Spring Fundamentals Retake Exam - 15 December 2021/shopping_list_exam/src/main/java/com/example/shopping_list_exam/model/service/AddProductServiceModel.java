@@ -10,12 +10,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AddProductServiceModel {
   private String name;
   private String description;
   private BigDecimal price;
-  private LocalDate neededBefore;
+  private LocalDateTime neededBefore;
   private CategoryEnum category;
 
   public AddProductServiceModel() {
@@ -33,7 +34,7 @@ public class AddProductServiceModel {
     return price;
   }
 
-  public LocalDate getNeededBefore() {
+  public LocalDateTime getNeededBefore() {
     return neededBefore;
   }
 
@@ -56,7 +57,7 @@ public class AddProductServiceModel {
     return this;
   }
 
-  public AddProductServiceModel setNeededBefore(LocalDate neededBefore) {
+  public AddProductServiceModel setNeededBefore(LocalDateTime neededBefore) {
     this.neededBefore = neededBefore;
     return this;
   }

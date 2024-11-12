@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
@@ -13,7 +14,7 @@ public class Product extends BaseEntity {
   private String name;
   private String description;
   private BigDecimal price;
-  private LocalDate neededBefore;
+  private LocalDateTime neededBefore;
   private Category category;
   private UserEntity user;
 
@@ -41,7 +42,7 @@ public class Product extends BaseEntity {
   }
 
   @Column(nullable = false)
-  public LocalDate getNeededBefore() {
+  public LocalDateTime getNeededBefore() {
     return neededBefore;
   }
 
@@ -65,7 +66,7 @@ public class Product extends BaseEntity {
     return this;
   }
 
-  public Product setNeededBefore(LocalDate neededBefore) {
+  public Product setNeededBefore(LocalDateTime neededBefore) {
     this.neededBefore = neededBefore;
     return this;
   }
